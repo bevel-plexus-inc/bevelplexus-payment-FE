@@ -202,7 +202,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
                 <Dropdown overlay={notifications} placement='bottomRight'>
                   <div>
                     <img
-                      src='/assets/svg/bell-icon-light.svg'
+                      src={`${process.env.PUBLIC_URL}/assets/svg/bell-icon-light.svg`}
                       alt='notifications'
                     />
                     <span></span>

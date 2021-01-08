@@ -67,7 +67,7 @@ function Routes() {
 
   return (
     <React.Fragment>
-      <Router>
+      <Router basename={'/payment'}>
         <Switch>
           <Route exact path='/' component={Dashboard} />
           <Route exact path='/payment'>
