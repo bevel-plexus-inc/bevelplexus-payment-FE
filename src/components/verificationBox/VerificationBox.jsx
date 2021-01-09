@@ -4,6 +4,8 @@ import { Tooltip } from "antd";
 
 import UserContext from "../../context/user/userContext";
 
+const base = process.env.REACT_APP_BASEURL
+
 function VerificationBox() {
   const userContext = useContext(UserContext);
 
@@ -23,7 +25,7 @@ function VerificationBox() {
   const text = (
     <div style={tooltipStyle}>
       <img
-        src='/assets/svg/info-alt.svg'
+        src={`${base}assets/svg/info-alt.svg`}
         alt='icon'
         style={{ margin: "5px 12px 0 0" }}
       />
@@ -56,7 +58,7 @@ function VerificationBox() {
               : "1"}
           </h3>
           <Tooltip placement='bottomRight' title={text}>
-            <img src='/assets/svg/info.svg' alt='icon' />
+            <img src={`${base}assets/svg/info.svg`} alt='icon' />
           </Tooltip>
         </div>
 
@@ -82,7 +84,7 @@ function VerificationBox() {
           <p>
             Email Verification{" "}
             {isEmailVerified ? (
-              <img src='/assets/svg/green-check-alt.svg' alt='' />
+              <img src={`${base}assets/svg/green-check-alt.svg`} alt='' />
             ) : (
               <span className='material-icons'>close</span>
             )}
@@ -90,7 +92,7 @@ function VerificationBox() {
           <p>
             Phone Verification
             {isPhoneNumberVerified ? (
-              <img src='/assets/svg/green-check-alt.svg' alt='' />
+              <img src={`${base}assets/svg/green-check-alt.svg`} alt='' />
             ) : (
               <span className='material-icons'>close</span>
             )}
@@ -99,7 +101,7 @@ function VerificationBox() {
             <p className='fade-text'>
               School information
               {isSchoolEnrollmentVerified ? (
-                <img src='/assets/svg/green-check-alt.svg' alt='' />
+                <img src={`${base}assets/svg/green-check-alt.svg`} alt='' />
               ) : (
                 <span className='material-icons'>close</span>
               )}
@@ -108,7 +110,7 @@ function VerificationBox() {
           <p>
             ID Verification
             {isIdentityVerified ? (
-              <img src='/assets/svg/green-check-alt.svg' alt='' />
+              <img src={`${base}assets/svg/green-check-alt.svg`} alt='' />
             ) : (
               <span className='material-icons'>close</span>
             )}
@@ -117,7 +119,7 @@ function VerificationBox() {
           <p>
             Utility bill verifiation
             {isUtilityBillVerified ? (
-              <img src='/assets/svg/green-check-alt.svg' alt='' />
+              <img src={`${base}assets/svg/green-check-alt.svg`} alt='' />
             ) : (
               <span className='material-icons'>close</span>
             )}

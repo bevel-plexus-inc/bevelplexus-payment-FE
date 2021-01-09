@@ -62,7 +62,7 @@ const RecipientState = (props) => {
           payload: data,
         });
       })
-      .catch(() => {
+      .catch((err) => {
         showError("Failed to fetch recipients");
       });
   };

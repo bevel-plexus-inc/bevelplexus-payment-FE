@@ -8,6 +8,8 @@ import LastTransaction from "./LastTransaction";
 
 import TransactionContext from "../../context/transactions/transactionContext";
 
+const base = process.env.REACT_APP_BASEURL
+
 function Dashboard({ showTips }) {
   const transactionContext = useContext(TransactionContext);
 
@@ -55,7 +57,7 @@ function Dashboard({ showTips }) {
           <div className='shadow-box box-three' style={{ width: "100%" }}>
             <div className='icon-container'>
               <img
-                src='/assets/svg/transaction-icon-alt.svg'
+                src={`${base}assets/svg/transaction-icon-alt.svg`}
                 alt='transaction'
               />
             </div>

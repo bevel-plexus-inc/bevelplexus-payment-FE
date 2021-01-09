@@ -6,6 +6,8 @@ import Sidebar from "./RightSidebar";
 import Header from "./Header";
 import Intro from "../../components/intro/Intro";
 
+const base = process.env.REACT_APP_BASEURL
+
 function Layout({ currentMenu, children }) {
   const [showSidebar, setShowSidebar] = useState(false);
   const [rightSidebar, setRightSidebar] = useState(false);
@@ -41,7 +43,7 @@ function Layout({ currentMenu, children }) {
           className={showSidebar ? "sidebar-expanded" : ""}
         >
           <div className='logo-container'>
-            <img src='/assets/svg/logo.svg' alt='' />
+            <img src={`${base}assets/svg/logo.svg`} alt='' />
           </div>
 
           <nav>
@@ -51,7 +53,7 @@ function Layout({ currentMenu, children }) {
                 ref={currentMenu === "dashboard" ? introRef : null}
               >
                 <Link to='/'>
-                  <img src='/assets/svg/home-icon.svg' alt='home' />
+                  <img src={`${base}assets/svg/home-icon.svg`} alt='home' />
                   Dashboard
                 </Link>
               </li>
@@ -60,7 +62,7 @@ function Layout({ currentMenu, children }) {
                 ref={currentMenu === "payment" ? introRef : null}
               >
                 <Link to='/payment/recipient'>
-                  <img src='/assets/svg/wallet-icon.svg' alt='home' />
+                  <img src={`${base}assets/svg/wallet-icon.svg`} alt='home' />
                   Make payment
                 </Link>
               </li>
@@ -69,7 +71,7 @@ function Layout({ currentMenu, children }) {
                 ref={currentMenu === "transaction" ? introRef : null}
               >
                 <Link to='/transactions'>
-                  <img src='/assets/svg/hourglass-icon.svg' alt='home' />
+                  <img src={`${base}assets/svg/hourglass-icon.svg`} alt='home' />
                   Transaction history
                 </Link>
               </li>
@@ -78,7 +80,7 @@ function Layout({ currentMenu, children }) {
                 ref={currentMenu === "recipients" ? introRef : null}
               >
                 <Link to='/recipients'>
-                  <img src='/assets/svg/contact-icon.svg' alt='home' />
+                  <img src={`${base}assets/svg/contact-icon.svg`} alt='home' />
                   Recipients
                 </Link>
               </li>
@@ -87,7 +89,7 @@ function Layout({ currentMenu, children }) {
                 ref={currentMenu === "account" ? introRef : null}
               >
                 <Link to='/account'>
-                  <img src='/assets/svg/user-icon.svg' alt='home' />
+                  <img src={`${base}assets/svg/user-icon.svg`} alt='home' />
                   My Account
                 </Link>
               </li>
@@ -95,7 +97,7 @@ function Layout({ currentMenu, children }) {
           </nav>
 
           <div className='bg-shape'>
-            <img src='/assets/svg/sidebar-shape.svg' alt='bg-shape' />
+            <img src={`${base}assets/svg/sidebar-shape.svg`} alt='bg-shape' />
           </div>
         </aside>
 

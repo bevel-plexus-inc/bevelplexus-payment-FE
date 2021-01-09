@@ -4,6 +4,8 @@ import "./Header.scss";
 import UserContext from "../../context/user/userContext";
 import { Dropdown, Button } from "antd";
 
+const base = process.env.REACT_APP_BASEURL
+
 function Header({
   withRightSidebar,
   collapseRightSidebar,
@@ -33,7 +35,7 @@ function Header({
 
       <ul>
         <li>
-          <img src='/assets/svg/greendot.svg' alt='' />
+          <img src={`${base}assets/svg/greendot.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit nostrud amet.
@@ -41,7 +43,7 @@ function Header({
         </li>
 
         <li>
-          <img src='/assets/svg/greendot.svg' alt='' />
+          <img src={`${base}assets/svg/greendot.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit
@@ -49,7 +51,7 @@ function Header({
         </li>
 
         <li>
-          <img src='/assets/svg/greendot.svg' alt='' />
+          <img src={`${base}assets/svg/greendot.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit
@@ -57,7 +59,7 @@ function Header({
         </li>
 
         <li>
-          <img src='/assets/svg/orangecheck.svg' alt='' />
+          <img src={`${base}assets/svg/orangecheck.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit
@@ -65,7 +67,7 @@ function Header({
         </li>
 
         <li>
-          <img src='/assets/svg/orangecheck.svg' alt='' />
+          <img src={`${base}assets/svg/orangecheck.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit
@@ -83,14 +85,14 @@ function Header({
         >
           <span className='material-icons'>menu</span>
         </button>
-        <img src='/assets/svg/logo.svg' alt='bevel plexus logo' />
+        <img src={`${base}assets/svg/logo.svg`} alt='bevel plexus logo' />
       </div>
 
       <div className='profile-summary'>
         <div className='notifications'>
           <Dropdown overlay={notifications} placement='bottomRight'>
             <div>
-              <img src='/assets/svg/bell-icon.svg' alt='notigications' />
+              <img src={`${base}assets/svg/bell-icon.svg`} alt='notigications' />
               <span></span>
             </div>
           </Dropdown>
@@ -98,7 +100,7 @@ function Header({
 
         <Dropdown overlay={menu} placement='bottomRight' arrow>
           <Button>
-            <img src='/assets/svg/avatar.svg' alt='avi' className='avatar' />
+            <img src={`${base}assets/svg/avatar.svg`} alt='avi' className='avatar' />
             <span className='profile-name'>{userContext.state.user.firstName} {userContext.state.user.lastName} </span>
             <span className='material-icons'>arrow_drop_down</span>
           </Button>

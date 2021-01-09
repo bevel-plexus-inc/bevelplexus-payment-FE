@@ -8,6 +8,8 @@ import UserContext from "../../context/user/userContext";
 
 import { Dropdown, Tooltip, Button } from "antd";
 
+const base = process.env.REACT_APP_BASEURL
+
 function RightSidebar({ collapsed, collapseRightSidebar }) {
   const userContext = useContext(UserContext);
 
@@ -108,7 +110,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
 
       <ul>
         <li>
-          <img src='assets/svg/greendot.svg' alt='' />
+          <img src={`${base}assets/svg/greendot.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit nostrud amet.
@@ -116,7 +118,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
         </li>
 
         <li>
-          <img src='assets/svg/greendot.svg' alt='' />
+          <img src={`${base}assets/svg/greendot.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit
@@ -124,7 +126,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
         </li>
 
         <li>
-          <img src='assets/svg/greendot.svg' alt='' />
+          <img src={`${base}assets/svg/greendot.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit
@@ -132,7 +134,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
         </li>
 
         <li>
-          <img src='assets/svg/orangecheck.svg' alt='' />
+          <img src={`${base}assets/svg/orangecheck.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit
@@ -140,7 +142,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
         </li>
 
         <li>
-          <img src='assets/svg/orangecheck.svg' alt='' />
+          <img src={`${base}assets/svg/orangecheck.svg`} alt='' />
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit
@@ -158,7 +160,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
   const text = (
     <div style={tooltipStyle}>
       <img
-        src='/assets/svg/info-alt.svg'
+        src={`${base}assets/svg/info-alt.svg`}
         alt='icon'
         style={{ margin: "5px 12px 0 0" }}
       />
@@ -202,7 +204,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
                 <Dropdown overlay={notifications} placement='bottomRight'>
                   <div>
                     <img
-                      src='/assets/svg/bell-icon-light.svg'
+                      src={`${base}assets/svg/bell-icon-light.svg`}
                       alt='notifications'
                     />
                     <span></span>
@@ -213,7 +215,7 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
               <Dropdown overlay={menu} placement='bottomRight' arrow>
                 <Button>
                   <img
-                    src='/assets/svg/avatar.svg'
+                    src={`${base}assets/svg/avatar.svg`}
                     alt='avi'
                     className='avatar'
                   />
@@ -235,21 +237,21 @@ function RightSidebar({ collapsed, collapseRightSidebar }) {
 
             <div className='mini-profile'>
               <div className='mini-profile__avatar'>
-                <img src='assets/svg/ellipse-bcg.svg' alt='' />
+                <img src={`${base}assets/svg/ellipse-bcg.svg`} alt='' />
                 <img
-                  src='assets/svg/ellipse-cover.svg'
+                  src={`${base}assets/svg/ellipse-cover.svg`}
                   alt=''
                   className='ellipse'
                 />
 
                 <img
-                  src='assets/svg/ellipse-cover.svg'
+                  src={`${base}assets/svg/ellipse-cover.svg`}
                   alt=''
                   className='ellipse inverted'
                 />
                 <div className='avatar-container'>
                   <img
-                    src='/assets/img/profileimage.png'
+                    src={`${base}assets/img/profileimage.png`}
                     alt='avatar'
                     className='avatar'
                   />

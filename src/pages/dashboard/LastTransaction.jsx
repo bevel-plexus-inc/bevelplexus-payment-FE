@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import PaymentContext from "../../context/payment/paymentContext";
 import RecipientContext from '../../context/recipients/recipientContext'
 
+const base = process.env.REACT_APP_BASEURL
+
 function LastTransaction({ data }) {
   const paymentContext = useContext(PaymentContext);
   const recipientContext = useContext(RecipientContext)
@@ -18,7 +20,7 @@ function LastTransaction({ data }) {
     <div className='box-one__content'>
       <div className='user-details'>
         <div className='user-details__avi'>
-          <img src='/assets/img/avatar-square.png' alt='avi' />
+          <img src={`${base}assets/img/avatar-square.png`} alt='avi' />
           {/* <img src="/assets/svg/brazil-flag.svg" alt="" className="user-details__avi__flag"/> */}
         </div>
         <span className='box-one__text-wrapper'>

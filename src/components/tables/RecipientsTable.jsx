@@ -9,6 +9,8 @@ import EditModal from "../editRecipientModal/EditRecipient";
 import PaymentContext from '../../context/payment/paymentContext'
 import RecipientContext from "../../context/recipients/recipientContext";
 
+const base = process.env.REACT_APP_BASEURL
+
 function RecipientsTable() {
   const paymentContext = useContext(PaymentContext);
   const recipientContext = useContext(RecipientContext);
@@ -46,12 +48,12 @@ function RecipientsTable() {
                   <div>
                     <section>
                       <img
-                        src='/assets/svg/avatar.svg'
+                        src={`${base}assets/svg/avatar.svg`}
                         alt='avatar'
                         className='avatar-img'
                       />
                       {/* <img
-                        src='/assets/svg/brazil-flag.svg'
+                        src={`${base}assets/svg/brazil-flag.svg`}
                         alt=''
                         className='img-attachment'
                       /> */}

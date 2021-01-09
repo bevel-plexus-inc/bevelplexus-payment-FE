@@ -8,6 +8,8 @@ import Alert from "../../components/alert/Alert";
 
 import PaymentContext from "../../context/payment/paymentContext";
 
+const base = process.env.REACT_APP_BASEURL
+
 function PaymentReview({ showTips }) {
   const [alert, setAlert] = useState(true);
   const [animate, isAnimated] = useState(false);
@@ -57,9 +59,9 @@ function PaymentReview({ showTips }) {
 
               <div className='user-details'>
                 <div className='user-details__avi'>
-                  <img src='/assets/img/avatar-square.png' alt='avi' />
+                  <img src={`${base}assets/img/avatar-square.png`} alt='avi' />
                   <img
-                    src='/assets/svg/brazil-flag.svg'
+                    src={`${base}assets/svg/brazil-flag.svg`}
                     alt=''
                     className='user-details__avi__flag'
                   />
@@ -80,12 +82,12 @@ function PaymentReview({ showTips }) {
 
               <div className='contact-details'>
                 <p>
-                  <img src='/assets/svg/smartphone.svg' alt='smartphone' />
+                  <img src={`${base}assets/svg/smartphone.svg`} alt='smartphone' />
                   {phoneNumber}
                 </p>
 
                 <p>
-                  <img src='/assets/svg/world.svg' alt='world' />
+                  <img src={`${base}assets/svg/world.svg`} alt='world' />
                   {location}
                 </p>
               </div>
@@ -110,7 +112,7 @@ function PaymentReview({ showTips }) {
                 <p>
                   <span>Send Amount</span>
                   <span>
-                    <img src='/assets/svg/canada-flag.svg' alt='cad' />
+                    <img src={`${base}assets/svg/canada-flag.svg`} alt='cad' />
                     {baseAmount} {sendCurrency}
                   </span>
                 </p>
@@ -128,7 +130,7 @@ function PaymentReview({ showTips }) {
                 <p>
                   <span>recipient gets</span>
                   <span>
-                    <img src='/assets/svg/brazil-flag.svg' alt='brl' />
+                    <img src={`${base}assets/svg/brazil-flag.svg`} alt='brl' />
                     {convertedAmount} {destinationCurrency}
                   </span>
                 </p>

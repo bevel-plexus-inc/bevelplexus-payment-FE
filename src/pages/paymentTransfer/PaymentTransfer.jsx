@@ -11,6 +11,8 @@ import Modal from "../../components/addReceivingMethod/AddReceivingMethod";
 import PaymentContext from "../../context/payment/paymentContext";
 import dateFormat from "dateformat";
 
+const base = process.env.REACT_APP_BASEURL
+
 function PaymentTransfer({ showTips }) {
   const paymentContext = useContext(PaymentContext);
   const receiveType = paymentContext.state.fxDetails.receiveType;
@@ -59,7 +61,7 @@ function PaymentTransfer({ showTips }) {
               }
               onClick={() => handleClick("Delayed")}
             >
-              <img src='/assets/svg/calender.svg' alt='recipient' />
+              <img src={`${base}assets/svg/calender.svg`} alt='recipient' />
               <p className='flexible-text'>
                 1-2 Business Day
                 <span>Free</span>
@@ -73,7 +75,7 @@ function PaymentTransfer({ showTips }) {
               }
               onClick={() => handleClick("SameDay")}
             >
-              <img src='/assets/svg/hourglass.svg' alt='school' />
+              <img src={`${base}assets/svg/hourglass.svg`} alt='school' />
               <p className='flexible-text'>
                 Same day
                 <span>1% of transaction</span>

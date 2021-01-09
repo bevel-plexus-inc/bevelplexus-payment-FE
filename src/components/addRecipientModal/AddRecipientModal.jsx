@@ -6,6 +6,8 @@ import locations from "../locations.json";
 
 import axios from "axios";
 
+const base = process.env.REACT_APP_BASEURL
+
 function Editrecipient({ action }) {
   const recipientContext = useContext(RecipeientContext);
 
@@ -117,7 +119,7 @@ function Editrecipient({ action }) {
         <div className='form-container'>
           <div className='shadow-box input-item'>
             <span className='icon'>
-              <img src='/assets/svg/contact.svg' alt='name' />
+              <img src={`${base}assets/svg/contact.svg`} alt='name' />
             </span>
             <input
               required
@@ -131,7 +133,7 @@ function Editrecipient({ action }) {
 
           <div className='shadow-box input-item'>
             <span className='icon'>
-              <img src='/assets/svg/mail.svg' alt='settings' />
+              <img src={`${base}assets/svg/mail.svg`} alt='settings' />
             </span>
             <input
               required
@@ -145,7 +147,7 @@ function Editrecipient({ action }) {
 
           <div className='shadow-box input-item'>
             <span className='icon'>
-              <img src='/assets/svg/world-blue.svg' alt='phone' />
+              <img src={`${base}assets/svg/world-blue.svg`} alt='phone' />
             </span>
             <input
               required
@@ -159,7 +161,7 @@ function Editrecipient({ action }) {
 
           <div className='shadow-box input-item'>
             <span className='icon'>
-              <img src='/assets/svg/location-blue.svg' alt='location' />
+              <img src={`${base}assets/svg/location-blue.svg`} alt='location' />
             </span>
             <Select
               showSearch
@@ -180,7 +182,7 @@ function Editrecipient({ action }) {
 
           <div className='shadow-box input-item'>
             <span className='icon'>
-              <img src='/assets/svg/bank.svg' alt='bank' />
+              <img src={`${base}assets/svg/bank.svg`} alt='bank' />
             </span>
             <input
               required
@@ -195,7 +197,7 @@ function Editrecipient({ action }) {
 
           <div className='shadow-box input-item'>
             <span className='icon'>
-              <img src='/assets/svg/hashtag.svg' alt='number' />
+              <img src={`${base}assets/svg/hashtag.svg`} alt='number' />
             </span>
             <input
               required
@@ -229,7 +231,7 @@ function Editrecipient({ action }) {
           >
             {" "}
             {loading ? (
-              <img src='assets/svg/spinner.svg' alt='spinner' />
+              <img src={`${base}assets/svg/spinner.svg`} alt='spinner' />
             ) : (
               "Save"
             )}{" "}
