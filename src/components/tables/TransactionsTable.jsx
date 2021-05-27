@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import "./TransactionsTable.scss";
 
 import dateFormat from "dateformat";
-import { getBadge } from '../../helpers/transactionBadge'
+import { getBadge } from "../../helpers/transactionBadge";
 
 import TransactionContext from "../../context/transactions/transactionContext";
 
-function TransactionsTable({ data }) {
+function TransactionsTable({ data, institution }) {
   const [expanded, setExpanded] = useState("");
 
   const toggleTableRow = (row) => {
@@ -15,14 +15,12 @@ function TransactionsTable({ data }) {
 
   dateFormat.masks.custom = "dd/mm/yy";
 
-  const transactions = data.slice(0, 5);
-
   const transactionContext = useContext(TransactionContext);
 
   useEffect(() => {
     const page = {
       offset: 0,
-      limit: 5,
+      limit: 5
     };
 
     transactionContext.getTransactions(page);
@@ -30,9 +28,8 @@ function TransactionsTable({ data }) {
     // eslint-disable-next-line
   }, []);
 
-
   return (
-    <div id='transaction-table'>
+    <div id="transaction-table">
       <table>
         <colgroup>
           <col style={{ width: "30%" }} />
@@ -51,7 +48,7 @@ function TransactionsTable({ data }) {
         </thead>
 
         <tbody>
-          {transactions.map((data) => (
+          {data.map((data) => (
             <React.Fragment key={data.id}>
               <tr className={expanded === data.id ? "expanded" : "collapsed"}>
                 <td>
@@ -62,11 +59,13 @@ function TransactionsTable({ data }) {
                           ? "./assets/svg/avatar.svg"
                           : "./assets/svg/institution.svg"
                       }
-                      alt='avatar'
+                      alt="avatar"
                     />
                     <p style={{ fontSize: "0.9rem" }}>
                       {" "}
-                      {data.recipient.name}{" "}
+                      {data.transactionType === "Individual"
+                        ? data?.recipient?.name
+                        : institution?.name}{" "}
                     </p>
                   </div>
                 </td>
@@ -77,10 +76,11 @@ function TransactionsTable({ data }) {
                       {" "}
                       {data.baseAmount.toLocaleString()} {data.sendCurrency}{" "}
                     </span>
-                    <span className='material-icons'>arrow_right</span>
+                    <span className="material-icons">arrow_right</span>
                     <span style={{ fontSize: "0.8rem" }}>
                       {" "}
-                      {data.convertedAmount.toLocaleString()} {data.destinationCurrency}{" "}
+                      {data.convertedAmount.toLocaleString()}{" "}
+                      {data.destinationCurrency}{" "}
                     </span>
                   </div>
                 </td>
@@ -103,10 +103,10 @@ function TransactionsTable({ data }) {
                       {getBadge(data.status).status.toUpperCase()}
                     </span>
                     <button
-                      className='toggle'
+                      className="toggle"
                       onClick={() => toggleTableRow(data.id)}
                     >
-                      <span className='material-icons'>
+                      <span className="material-icons">
                         {expanded === data.id
                           ? "arrow_drop_up"
                           : "arrow_drop_down"}
@@ -117,45 +117,46 @@ function TransactionsTable({ data }) {
               </tr>
 
               {expanded === data.id && (
-                <tr className='tr-extension'>
-                  <td colSpan='4'>
-                    <div className='tr-extension__content'>
-                      <div className='col-one'>
-                        <span className='flag'>
+                <tr className="tr-extension">
+                  <td colSpan="4">
+                    <div className="tr-extension__content">
+                      <div className="col-one">
+                        <span className="flag">
                           <img
                             src={`https://www.countryflags.io/${data.sendCurrency
                               .slice(0, 2)
                               .toLowerCase()}/flat/24.png`}
-                            alt='flag'
+                            alt="flag"
                           />{" "}
                         </span>
-                        <span className='material-icons'>arrow_right</span>
-                        <span className='flag'>
+                        <span className="material-icons">arrow_right</span>
+                        <span className="flag">
                           <img
                             src={`https://www.countryflags.io/${data.destinationCurrency
                               .slice(0, 2)
                               .toLowerCase()}/flat/24.png`}
-                            alt='flag'
+                            alt="flag"
                           />
                         </span>
                       </div>
 
-                      <div className='col-two'>
+                      <div className="col-two">
                         <small>Exchange Rate</small>
                         <p> {data.rate.toLocaleString()} </p>
                       </div>
 
-                      <div className='col-three'>
+                      <div className="col-three">
                         <small>Amount (Before Fee)</small>
                         <p>
                           {data.baseAmount.toLocaleString()} {data.sendCurrency}
                         </p>
                       </div>
 
-                      <div className='col-two'>
+                      <div className="col-two">
                         <small>Amount (After Fee)</small>
                         <p>
-                          {data.actualAmount.toLocaleString()} {data.sendCurrency}
+                          {data.actualAmount.toLocaleString()}{" "}
+                          {data.sendCurrency}
                         </p>
                       </div>
 

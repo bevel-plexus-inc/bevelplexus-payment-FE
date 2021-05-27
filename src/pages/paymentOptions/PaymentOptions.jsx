@@ -9,15 +9,21 @@ import CustomCheckbox from "../../components/customCheckbox/CustomCheckbox";
 import PaymentSummaryCard from "../../components/paymentSummaryCard/PaymentSummaryCard";
 
 import PaymentContext from "../../context/payment/paymentContext";
+import UserContext from "../../context/user/userContext";
 
 function PaymentOptions({ showTips }) {
   const paymentContext = useContext(PaymentContext);
-
+  const userContext = useContext(UserContext);
   const selected = paymentContext.state.paymentOption;
   const recipient = paymentContext.state.recipient;
   const institution = paymentContext.state.institution;
   const transactionType = paymentContext.state.transactionType;
   const fx = paymentContext.state.fxDetails;
+  const institutionId = userContext.state.user.studentAccountDetail
+    ? userContext.state.user.studentAccountDetail.institutionId
+    : "";
+
+  const [isUserCurrencyCode, setIsUserCurrencyCode] = useState(true);
 
   const [summary, setSummary] = useState({
     sendAmount: fx.baseAmount,
@@ -26,7 +32,7 @@ function PaymentOptions({ showTips }) {
     fees: "Free",
     convertedAmount: fx.convertedAmount,
     destinationCurrency: fx.destinationCurrency,
-    receivingMethod: selected,
+    receivingMethod: selected
   });
 
   const [redirect, setRedirect] = useState(false);
@@ -37,48 +43,84 @@ function PaymentOptions({ showTips }) {
       key: 1,
       title: "E-transfer",
       speed: "1 hour",
-      cost: "Free",
+      cost: "Free"
     },
     {
       key: 2,
       title: "Bank payment",
       speed: "1 hour",
-      cost: "Free",
+      cost: "Free"
     },
     {
       key: 3,
       title: "Debit card",
       speed: "1 hour",
-      cost: fx.baseAmount * 0.01,
+      cost: fx.baseAmount * 0.01
     },
     {
       key: 4,
       title: "Credit card",
       speed: "1 hour",
-      cost: fx.baseAmount * 0.01,
-    },
+      cost: fx.baseAmount * 0.01
+    }
   ];
+
+  function cardTitle(title) {
+    if (title === "E-transfer") {
+      return "E-Transfer";
+    } else if (title === "Bank payment") {
+      return "Bank Deposit";
+    } else {
+      return title;
+    }
+  }
+
+  let paymentMethodsByCountry;
+
+  if (fx.sendCurrency === "NGN" && isUserCurrencyCode) {
+    paymentContext.setPaymentOption("Bank payment");
+    setIsUserCurrencyCode(false);
+  }
+  if (fx.sendCurrency === "NGN") {
+    paymentMethodsByCountry = paymentMethods.slice(1, 2);
+  } else {
+    paymentMethodsByCountry = paymentMethods.slice(0, 2);
+  }
 
   const handleClick = (card) => {
     paymentContext.setPaymentOption(card.title);
 
     setSummary({
       ...summary,
-      fees: card.cost,
+      fees: card.cost
     });
   };
 
   const initiateTransaction = () => {
-    const transactionDetails = {
-      recipientId: paymentContext.state.transactionType === "Individual" ? recipient.id : institution.institutionId,
-      userId: localStorage.getItem("userId"),
-      bankInfoId: recipient.bankInfo[0].id,
-      sendCurrency: fx.sendCurrency,
-      destinationCurrency: fx.destinationCurrency,
-      baseAmount: fx.baseAmount,
-      transactionType: paymentContext.state.transactionType,
-      receiveType: fx.receiveType,
-    };
+    let transactionDetails;
+    if (paymentContext.state.transactionType === "Individual") {
+      transactionDetails = {
+        recipientId: recipient.id,
+        userId: localStorage.getItem("userId"),
+        bankInfoId: recipient.bankInfo[0].id,
+        sendCurrency: fx.sendCurrency,
+        destinationCurrency: fx.destinationCurrency,
+        baseAmount: fx.baseAmount,
+        transactionType: paymentContext.state.transactionType,
+        receiveType: fx.receiveType
+      };
+    } else {
+      transactionDetails = {
+        recipientId: institutionId,
+        userId: localStorage.getItem("userId"),
+        bankInfoId: "",
+        sendCurrency: fx.sendCurrency,
+        destinationCurrency: fx.destinationCurrency,
+        baseAmount: fx.baseAmount,
+        transactionType: paymentContext.state.transactionType,
+        receiveType: fx.receiveType
+      };
+    }
 
     setProgress("4");
 
@@ -89,36 +131,38 @@ function PaymentOptions({ showTips }) {
     <div id="payment-options">
       <Layout currentMenu="payment" payProgress={progress} showTips={showTips}>
         <div className="page-title">
-          <h1>Payment</h1>
+          <h1>Payment Summary</h1>
         </div>
 
         <div className="section-wrap">
           <div className="section-one">
             <div className="section-title">
-              <p>Select the payment options</p>
+              <p>Select Payment Method</p>
             </div>
 
-            {paymentMethods.slice(0, 2).map((card) => (
-              <div
-                className="shadow-box"
-                key={card.key}
-                onClick={() => handleClick(card)}
-              >
-                <CustomCheckbox
-                  checked={selected === card.title}
-                  title={card.title}
-                  subLeft={`Transfer speed ${card.speed}`}
-                  action={card.cost.toLocaleString()}
-                  currency={fx.sendCurrency}
-                  green={card.cost === "Free"}
-                />
-              </div>
-            ))}
+            {paymentMethodsByCountry.map((card) => {
+              return (
+                <div
+                  className="shadow-box"
+                  key={card.key}
+                  onClick={() => handleClick(card)}
+                >
+                  <CustomCheckbox
+                    checked={selected === card.title}
+                    title={cardTitle(card.title)}
+                    subLeft={`Transfer speed ${card.speed}`}
+                    action={card.cost.toLocaleString()}
+                    currency={fx.sendCurrency}
+                    greenuseEffect={card.cost === "Free"}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           <div className="section-two">
             <div className="shadow-box">
-              <PaymentSummaryCard data={summary} />
+              <PaymentSummaryCard data={summary} title={cardTitle} />
             </div>
           </div>
         </div>
