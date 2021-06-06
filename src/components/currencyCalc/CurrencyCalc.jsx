@@ -51,7 +51,6 @@ const CurrencyCalc = () => {
     setTempCountry(true);
     paymentContext.getFxRates(data);
   };
-
   const handleChange = (e) => {
     if (e.target.name === "convertedAmount") {
       paymentContext.setReverseCalc(true);
@@ -175,13 +174,13 @@ const CurrencyCalc = () => {
               <small>=</small>
             </span>{" "}
             {actualAmount} {sendCurrency}
-            <span className="logic__description">Amount we'll convert</span>
+            <span className="logic__description">Amount (Before Fees)</span>
           </p>
           <p>
             <span className="logic__symbols">
               <small>÷</small>
             </span>{" "}
-            {rate}
+            {rate >= 1 || rate == "0.00" ? rate.toFixed(2) : rate.toFixed(4)}
             <span className="logic__description">Exchange Rate</span>
           </p>
         </div>

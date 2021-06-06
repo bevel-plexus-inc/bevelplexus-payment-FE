@@ -1,7 +1,7 @@
 import React from "react";
 import "./PaymentSummaryCard.scss";
 
-const PaymentSummaryCard = ({ data, title }) => {
+const PaymentSummaryCard = ({ data, title, recipientType }) => {
   return (
     <div id="payment-summary-card">
       <p>
@@ -26,7 +26,11 @@ const PaymentSummaryCard = ({ data, title }) => {
       </p>
 
       <p>
-        <span>Recipient Gets</span>
+        <span>
+          {recipientType == "Individual"
+            ? " Recipient Gets"
+            : "School Receives"}
+        </span>
         <span>
           {parseFloat(data.convertedAmount).toLocaleString()}{" "}
           {data.destinationCurrency}{" "}

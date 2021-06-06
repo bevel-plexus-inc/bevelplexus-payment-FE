@@ -103,7 +103,7 @@ function Paymentrecipient({ showTips }) {
           {transactionType === "Individual" && (
             <React.Fragment>
               <div className="section-title">
-                <p>Select Your Recipient</p>
+                <p>Select your recipient</p>
               </div>
               <div className="box-container">
                 <div className="shadow-box">
@@ -136,7 +136,7 @@ function Paymentrecipient({ showTips }) {
                 <div className="side-link">
                   <Link to="#">
                     <div onClick={() => setShowAddModal(true)}>
-                      Add A New Recipient
+                      Add a new recipient
                     </div>
                   </Link>
                 </div>

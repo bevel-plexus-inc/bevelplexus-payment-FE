@@ -34,7 +34,6 @@ function PaymentOptions({ showTips }) {
     destinationCurrency: fx.destinationCurrency,
     receivingMethod: selected
   });
-
   const [redirect, setRedirect] = useState(false);
   const [progress, setProgress] = useState("3");
 
@@ -105,8 +104,8 @@ function PaymentOptions({ showTips }) {
         bankInfoId: recipient.bankInfo[0].id,
         sendCurrency: fx.sendCurrency,
         destinationCurrency: fx.destinationCurrency,
-        baseAmount: fx.baseAmount,
-        transactionType: paymentContext.state.transactionType,
+        baseAmount: +fx.baseAmount,
+        transactionType,
         receiveType: fx.receiveType
       };
     } else {
@@ -116,8 +115,8 @@ function PaymentOptions({ showTips }) {
         bankInfoId: "",
         sendCurrency: fx.sendCurrency,
         destinationCurrency: fx.destinationCurrency,
-        baseAmount: fx.baseAmount,
-        transactionType: paymentContext.state.transactionType,
+        baseAmount: +fx.baseAmount,
+        transactionType,
         receiveType: fx.receiveType
       };
     }
@@ -150,7 +149,7 @@ function PaymentOptions({ showTips }) {
                   <CustomCheckbox
                     checked={selected === card.title}
                     title={cardTitle(card.title)}
-                    subLeft={`Transfer speed ${card.speed}`}
+                    subLeft={`Transfer Speed ${card.speed}`}
                     action={card.cost.toLocaleString()}
                     currency={fx.sendCurrency}
                     greenuseEffect={card.cost === "Free"}
@@ -162,7 +161,11 @@ function PaymentOptions({ showTips }) {
 
           <div className="section-two">
             <div className="shadow-box">
-              <PaymentSummaryCard data={summary} title={cardTitle} />
+              <PaymentSummaryCard
+                data={summary}
+                title={cardTitle}
+                recipientType={transactionType}
+              />
             </div>
           </div>
         </div>

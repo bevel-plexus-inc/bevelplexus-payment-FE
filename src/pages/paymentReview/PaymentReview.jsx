@@ -40,8 +40,7 @@ function PaymentReview({ showTips }) {
     alertContext.showAlert({
       type: "warning",
       title: "Order Initiated",
-      body:
-        "Please read the INSTRUCTIONS on the next screen to complete payment process for this transaction",
+      body: "Please read the instructions on the next screen to complete payment process for this transaction",
       anchor: {
         target: "paymentInstructions",
         smooth: true,

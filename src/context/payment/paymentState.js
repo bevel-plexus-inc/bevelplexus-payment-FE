@@ -100,7 +100,7 @@ const PaymentState = (props) => {
                 : params.baseAmount,
               actualAmount: data.actualAmount.toFixed(2),
               fee: data.fee.toFixed(2),
-              rate: data.rate.toFixed(2),
+              rate: data.rate,
               convertedAmount: params.reverse
                 ? params.convertedAmount
                 : data.convertedAmount.toFixed(2)
@@ -221,8 +221,7 @@ const PaymentState = (props) => {
         alertContext.showAlert({
           type: "warning",
           title: "Oops!",
-          body:
-            "Your transaction may have not been proccessed correctly, please try again",
+          body: "Your transaction may have not been proccessed correctly, please try again",
           action() {
             alertContext.hideAlert();
           }
