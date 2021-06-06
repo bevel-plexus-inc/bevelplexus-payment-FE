@@ -70,24 +70,10 @@ function PaymentTransfer({ showTips }) {
 
         <div className="section-one">
           <div className="section-title">
-            <p>When Should Your Funds Be Received?</p>
+            <p>When should your funds be recieved?</p>
           </div>
 
           <div className="box-container">
-            <div
-              className={
-                receiveType === "Delayed"
-                  ? "shadow-box shadow-box-highlight"
-                  : "shadow-box"
-              }
-              onClick={() => handleClick("Delayed")}
-            >
-              <img src="./assets/svg/calender.svg" alt="recipient" />
-              <p className="flexible-text">
-                1-2 Business Day
-                <span>Free</span>
-              </p>
-            </div>
             <div
               className={
                 receiveType === "SameDay"
@@ -97,10 +83,7 @@ function PaymentTransfer({ showTips }) {
               onClick={() => handleClick("SameDay")}
             >
               <img src="./assets/svg/hourglass.svg" alt="school" />
-              <p className="flexible-text">
-                Same day
-                <span>1% of transaction</span>
-              </p>
+              <p className="flexible-text">Same Day</p>
             </div>
           </div>
         </div>
@@ -139,7 +122,7 @@ function PaymentTransfer({ showTips }) {
 
         <div className="section-three">
           <div className="section-title">
-            <p>Receiving method</p>{" "}
+            <p>Receiving Method</p>{" "}
             <Link to="#" className="spacer" onClick={() => setShowModal(true)}>
               Add new
             </Link>

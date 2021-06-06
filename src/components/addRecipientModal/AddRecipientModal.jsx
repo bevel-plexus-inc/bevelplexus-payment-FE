@@ -13,7 +13,7 @@ function Editrecipient({ action }) {
   const locations = paymentContext.state.countries.map((ct) => {
     return {
       code: ct.countryCode,
-      name: ct.name,
+      name: ct.name
     };
   });
 
@@ -29,20 +29,20 @@ function Editrecipient({ action }) {
     accountNumber: "",
     acctName: "Account Holder's Name",
     bankCode: "",
-    closeModal: action,
+    closeModal: action
   });
 
   const invalidCheck = [
     newRecipient.name,
     newRecipient.location,
     newRecipient.bank,
-    newRecipient.accountNumber,
+    newRecipient.accountNumber
   ];
 
   const handleChange = (e) => {
     setNewRecipient({
       ...newRecipient,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -56,7 +56,7 @@ function Editrecipient({ action }) {
         ...newRecipient,
         accountNumber: num,
         bank: "Fetching...",
-        acctName: "Fetching...",
+        acctName: "Fetching..."
       });
 
       axios
@@ -69,7 +69,7 @@ function Editrecipient({ action }) {
             accountNumber: num,
             bank: res.data[0].bank_name,
             acctName: res.data[0].account_name,
-            bankCode: res.data[0].bank_code,
+            bankCode: res.data[0].bank_code
           });
 
           setDisableBank(false);
@@ -79,7 +79,7 @@ function Editrecipient({ action }) {
             ...newRecipient,
             accountNumber: num,
             bank: "Invalid Acct No",
-            acctName: "Invalid Acct No",
+            acctName: "Invalid Acct No"
           });
 
           setDisableBank(false);
@@ -87,7 +87,7 @@ function Editrecipient({ action }) {
     } else {
       setNewRecipient({
         ...newRecipient,
-        accountNumber: num,
+        accountNumber: num
         // bank: "-",
         // acctName: "Account holder's name",
       });
@@ -97,7 +97,7 @@ function Editrecipient({ action }) {
   const handleSelect = (value) => {
     setNewRecipient({
       ...newRecipient,
-      location: value,
+      location: value
     });
   };
 
@@ -112,7 +112,7 @@ function Editrecipient({ action }) {
     <div id="addrecipient">
       <div className="box">
         <div className="heading">
-          <h2>recipient Details</h2>
+          <h2>Recipient Details</h2>
           <span className="material-icons" onClick={() => action(false)}>
             clear
           </span>
